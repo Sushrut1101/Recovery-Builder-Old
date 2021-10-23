@@ -16,7 +16,7 @@ task:
       cpu: 8
       memory: 32G
         
-  env_script:
+  Build-Env-Setup_script:
        - export DEBIAN_FRONTEND=noninteractive
        - apt update
        - apt install sudo
@@ -33,7 +33,7 @@ task:
        - sudo bash setup/android_build_env.sh
        - cd ~
        
-  sync_script:
+  Sync_script:
       - echo "============================"
       - echo "Syncing The Sources..."
       - echo "============================"
@@ -46,7 +46,7 @@ task:
       - echo "Syncing Complete!"
       - echo "============================"
   
-  build_script:
+  Build_script:
       - echo "============================"
       - echo "Starting the Build..."
       - echo "============================"
@@ -59,7 +59,7 @@ task:
       - lunch omni_$DEVICE-eng
       - mka -j16 $TARGET
      
-  upload_script:
+  Upload_script:
       - echo "============================"
       - echo "Uploading the Build..."
       - echo "============================"
