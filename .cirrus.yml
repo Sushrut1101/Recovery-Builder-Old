@@ -43,3 +43,15 @@ task:
         cpu: 12
         memory: 64G
         
+        sync_script:
+            echo "============================"
+            echo "Syncing The Sources..."
+            echo "============================"
+            mkdir -p ~/work
+            cd ~/work
+            repo init --depth=1 -u $MANIFEST 
+            repo sync -j24 --force-sync --no-tags --no-clone-bundle
+            echo "============================"
+            echo "Syncing Complete!"
+            echo "============================"
+            
