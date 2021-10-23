@@ -22,10 +22,12 @@ task:
        - apt install sudo
        - df -h
        - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
-       - ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+       - ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
        - apt-get install -y tzdata
        - dpkg-reconfigure --frontend noninteractive tzdata
        - sudo apt update -y && sudo apt install git aria2 rsync -y
+       - sudo apt install python2 -y
+       - sudo ln -sf /usr/bin/python2 /usr/bin/python
        - git config --global user.name "Sushrut1101"
        - git config --global user.email "guptasushrut@gmail.com"
        - git clone https://github.com/akhilnarang/scripts.git ~/scripts
