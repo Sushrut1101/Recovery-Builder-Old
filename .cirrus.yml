@@ -6,6 +6,7 @@ env:
     OEM:
     TARGET:
     EXTRA_CMD:
+    OUTPUT: recovery.img
 
 task:
   name: envsetup
@@ -66,3 +67,18 @@ task:
             - lunch omni_$DEVICE-eng
             - mka -j24 $TARGET
         
+        upload_script:
+            - echo "============================"
+            - echo "Uploading the Build..."
+            - echo "============================"
+            - cd ~/work
+            - cd out/target/product/$DEVICE
+            - curl --upload-file $OUTPUT https://transfer.sh | tee link.txt && echo " "
+            - echo " "
+            - echo "============================"
+            - echo "Build Uploaded!"
+            - echo "Please see the link Below:  "
+            - echo "----------------------------"
+            - cat link.txt
+            - echo "============================"
+            
