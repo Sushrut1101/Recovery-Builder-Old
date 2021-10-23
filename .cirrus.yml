@@ -64,6 +64,7 @@ task:
             - cd ~/work
             - export ALLOW_MISSING_DEPENDENCIES=true
             - export LC_ALL="C"
+            - $EXTRA_CMD
             - . build/envsetup.sh
             - lunch omni_$DEVICE-eng
             - mka -j24 $TARGET
