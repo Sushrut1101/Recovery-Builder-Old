@@ -9,13 +9,13 @@ env:
     OUTPUT: OrangeFox*.zip
 
 task:
-  name: envsetup
+  name: "Setting Up, Syncing, Building and Uploading..."
+  
   container:
       image: ubuntu:20.04
       cpu: 8
       memory: 32G
-      TZ: Asia/Kolkata
-
+        
   env_script:
        - export DEBIAN_FRONTEND=noninteractive
        - apt update
@@ -32,17 +32,7 @@ task:
        - cd ~/scripts
        - sudo bash setup/android_build_env.sh
        - cd ~
-
-task:
-  name: "Syncing, Building and Uploading..."
-  depends_on:
-      - envsetup
-  
-  container:
-      image: ubuntu:20.04
-      cpu: 8
-      memory: 32G
-        
+       
   sync_script:
       - echo "============================"
       - echo "Syncing The Sources..."
