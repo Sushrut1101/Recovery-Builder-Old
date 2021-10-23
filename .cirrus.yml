@@ -1,0 +1,18 @@
+task:
+  name: envsetup
+  persistent_worker:
+    labels:
+      name: ubuntu
+    isolation:
+      container:
+        image: ubuntu:20.04
+        cpu: 4
+        memory: 8G
+        
+    env_script:
+        - sudo apt update && sudo apt install git aria2 rsync -y
+        - git clone https://github.com/akhilnarang/scripts.git ~/scripts
+        - cd ~/scripts
+        - sudo bash setup/android_build_env.sh
+        - cd ~
+
