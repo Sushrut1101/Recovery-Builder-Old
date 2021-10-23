@@ -15,66 +15,66 @@ task:
       cpu: 4
       memory: 8G
     
-    init_script:
-        -env
+  init_script:
+       -env
     
-    env_script:
-        - sudo apt update && sudo apt install git aria2 rsync -y
-        - git config --global user.name "Sushrut1101"
-        - git config --global user.email "guptasushrut@gmail.com"
-        - git clone https://github.com/akhilnarang/scripts.git ~/scripts
-        - cd ~/scripts
-        - sudo bash setup/android_build_env.sh
-        - cd ~
+  env_script:
+       - sudo apt update && sudo apt install git aria2 rsync -y
+       - git config --global user.name "Sushrut1101"
+       - git config --global user.email "guptasushrut@gmail.com"
+       - git clone https://github.com/akhilnarang/scripts.git ~/scripts
+       - cd ~/scripts
+       - sudo bash setup/android_build_env.sh
+       - cd ~
 
 task:
-    name: "Syncing, Building and Uploading..."
-    depends_on:
-        - envsetup
+  name: "Syncing, Building and Uploading..."
+  depends_on:
+      - envsetup
   
-    container:
-        image: ubuntu:20.04
-        cpu: 12
-        memory: 64G
+  container:
+      image: ubuntu:20.04
+      cpu: 12
+      memory: 64G
         
-        sync_script:
-            - echo "============================"
-            - echo "Syncing The Sources..."
-            - echo "============================"
-            - mkdir -p ~/work
-            - cd ~/work
-            - repo init --depth=1 -u $MANIFEST 
-            - repo sync -j24 --force-sync --no-tags --no-clone-bundle
-            - git clone $DT_LINK $DT_PATH
-            - echo "============================"
-            - echo "Syncing Complete!"
-            - echo "============================"
+      sync_script:
+          - echo "============================"
+          - echo "Syncing The Sources..."
+          - echo "============================"
+          - mkdir -p ~/work
+          - cd ~/work
+          - repo init --depth=1 -u $MANIFEST 
+          - repo sync -j24 --force-sync --no-tags --no-clone-bundle
+          - git clone $DT_LINK $DT_PATH
+          - echo "============================"
+          - echo "Syncing Complete!"
+          - echo "============================"
+      
+      build_script:
+          - echo "============================"
+          - echo "Starting the Build..."
+          - echo "============================"
+          - cd ~/work
+          - export ALLOW_MISSING_DEPENDENCIES=true
+          - export LC_ALL="C"
+          - $EXTRA_CMD
+          - . build/envsetup.sh
+          - . $DT_PATH/vendorsetup.sh
+          - lunch omni_$DEVICE-eng
+          - mka -j24 $TARGET
         
-        build_script:
-            - echo "============================"
-            - echo "Starting the Build..."
-            - echo "============================"
-            - cd ~/work
-            - export ALLOW_MISSING_DEPENDENCIES=true
-            - export LC_ALL="C"
-            - $EXTRA_CMD
-            - . build/envsetup.sh
-            - . $DT_PATH/vendorsetup.sh
-            - lunch omni_$DEVICE-eng
-            - mka -j24 $TARGET
-        
-        upload_script:
-            - echo "============================"
-            - echo "Uploading the Build..."
-            - echo "============================"
-            - cd ~/work
-            - cd out/target/product/$DEVICE
-            - curl --upload-file $OUTPUT https://transfer.sh | tee link.txt && echo " "
-            - echo " "
-            - echo "============================"
-            - echo "Build Uploaded!"
-            - echo "Please see the link Below-  "
-            - echo "----------------------------"
-            - cat link.txt
-            - echo "============================"
+      upload_script:
+          - echo "============================"
+          - echo "Uploading the Build..."
+          - echo "============================"
+          - cd ~/work
+          - cd out/target/product/$DEVICE
+          - curl --upload-file $OUTPUT https://transfer.sh | tee link.txt && echo " "
+          - echo " "
+          - echo "============================"
+          - echo "Build Uploaded!"
+          - echo "Please see the link Below-  "
+          - echo "----------------------------"
+          - cat link.txt
+          - echo "============================"
             
