@@ -6,7 +6,6 @@ env:
     OEM: lenovo
     TARGET: recoveryimage
     EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
-    OUTPUT: OrangeFox*.zip
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
@@ -67,6 +66,7 @@ task:
       - echo "============================"
       - cd ~/work
       - cd out/target/product/$DEVICE
+      - export OUTPUT=$(ls OrangeFox*.zip)
       - curl --upload-file $OUTPUT https://transfer.sh | tee link.txt && echo " "
       - echo " "
       - echo "============================"
