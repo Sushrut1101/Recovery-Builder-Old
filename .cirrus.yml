@@ -19,7 +19,9 @@ task:
        - apt update
        - apt install sudo
        - df -h
-       - sudo DEBIAN_FRONTEND=noninteractive sudo apt update && sudo DEBIAN_FRONTEND=noninteractive sudo apt install git aria2 rsync -y
+       - export DEBIAN_FRONTEND=noninteractive
+       - sudo export DEBIAN_FRONTEND=noninteractive
+       - sudo apt update -y && sudo apt install git aria2 rsync -y
        - git config --global user.name "Sushrut1101"
        - git config --global user.email "guptasushrut@gmail.com"
        - git clone https://github.com/akhilnarang/scripts.git ~/scripts
