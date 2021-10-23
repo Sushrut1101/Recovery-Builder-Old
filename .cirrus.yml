@@ -12,7 +12,7 @@ task:
   name: envsetup
   container:
       image: ubuntu:20.04
-      cpu: 4
+      cpu: 8
       memory: 8G
       TZ: Asia/Kolkata
 
@@ -40,7 +40,7 @@ task:
   
   container:
       image: ubuntu:20.04
-      cpu: 12
+      cpu: 8
       memory: 64G
         
       sync_script:
@@ -50,7 +50,7 @@ task:
           - mkdir -p ~/work
           - cd ~/work
           - repo init --depth=1 -u $MANIFEST 
-          - repo sync -j24 --force-sync --no-tags --no-clone-bundle
+          - repo sync -j16 --force-sync --no-tags --no-clone-bundle
           - git clone $DT_LINK $DT_PATH
           - echo "============================"
           - echo "Syncing Complete!"
@@ -67,7 +67,7 @@ task:
           - . build/envsetup.sh
           - . $DT_PATH/vendorsetup.sh
           - lunch omni_$DEVICE-eng
-          - mka -j24 $TARGET
+          - mka -j16 $TARGET
         
       upload_script:
           - echo "============================"
