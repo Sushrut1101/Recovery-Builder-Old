@@ -16,7 +16,9 @@ task:
       memory: 8G
 
   env_script:
+       - apt update
        - apt install sudo
+       - df -h
        - sudo apt update && sudo apt install git aria2 rsync -y
        - git config --global user.name "Sushrut1101"
        - git config --global user.email "guptasushrut@gmail.com"
