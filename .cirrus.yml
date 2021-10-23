@@ -7,7 +7,6 @@ env:
     TARGET: recoveryimage
     EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
     OUTPUT: OrangeFox*.zip
-    DEBIAN_FRONTEND: noninteractive
 
 task:
   name: envsetup
@@ -20,7 +19,7 @@ task:
        - apt update
        - apt install sudo
        - df -h
-       - sudo apt update && sudo apt install git aria2 rsync -y
+       - sudo DEBIAN_FRONTEND=noninteractive sudo apt update && sudo DEBIAN_FRONTEND=noninteractive sudo apt install git aria2 rsync -y
        - git config --global user.name "Sushrut1101"
        - git config --global user.email "guptasushrut@gmail.com"
        - git clone https://github.com/akhilnarang/scripts.git ~/scripts
