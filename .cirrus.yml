@@ -67,6 +67,7 @@ task:
       - cd ~/work
       - cd out/target/product/"$DEVICE"
       - pwd
+      - chmod 777 *
       - curl -sL https://git.io/file-transfer | sh 
       - ./transfer wet OrangeFox*.zip | tee link.txt
       - echo " "
