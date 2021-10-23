@@ -44,25 +44,25 @@ task:
         memory: 64G
         
         sync_script:
-            echo "============================"
-            echo "Syncing The Sources..."
-            echo "============================"
-            mkdir -p ~/work
-            cd ~/work
-            repo init --depth=1 -u $MANIFEST 
-            repo sync -j24 --force-sync --no-tags --no-clone-bundle
-            echo "============================"
-            echo "Syncing Complete!"
-            echo "============================"
+            - echo "============================"
+            - echo "Syncing The Sources..."
+            - echo "============================"
+            - mkdir -p ~/work
+            - cd ~/work
+            - repo init --depth=1 -u $MANIFEST 
+            - repo sync -j24 --force-sync --no-tags --no-clone-bundle
+            - echo "============================"
+            - echo "Syncing Complete!"
+            - echo "============================"
         
         build_script:
-            echo "============================"
-            echo "Starting the Build..."
-            echo "============================"
-            cd ~/work
-            export ALLOW_MISSING_DEPENDENCIES=true
-            export LC_ALL="C"
-            . build/envsetup.sh
-            lunch omni_$DEVICE-eng
-            mka -j24 $TARGET
+            - echo "============================"
+            - echo "Starting the Build..."
+            - echo "============================"
+            - cd ~/work
+            - export ALLOW_MISSING_DEPENDENCIES=true
+            - export LC_ALL="C"
+            - . build/envsetup.sh
+            - lunch omni_$DEVICE-eng
+            - mka -j24 $TARGET
         
