@@ -80,7 +80,7 @@ task:
             - echo " "
             - echo "============================"
             - echo "Build Uploaded!"
-            - echo "Please see the link Below:  "
+            - echo "Please see the link Below-  "
             - echo "----------------------------"
             - cat link.txt
             - echo "============================"
