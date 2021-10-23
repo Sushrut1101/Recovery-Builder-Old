@@ -52,6 +52,7 @@ task:
             - cd ~/work
             - repo init --depth=1 -u $MANIFEST 
             - repo sync -j24 --force-sync --no-tags --no-clone-bundle
+            - git clone $DT_LINK $DT_PATH
             - echo "============================"
             - echo "Syncing Complete!"
             - echo "============================"
