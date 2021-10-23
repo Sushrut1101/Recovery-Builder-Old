@@ -14,12 +14,17 @@ task:
       image: ubuntu:20.04
       cpu: 4
       memory: 8G
+      TZ: Asia/Kolkata
 
   env_script:
+       - export DEBIAN_FRONTEND=noninteractive
        - apt update
        - apt install sudo
        - df -h
-       - export DEBIAN_FRONTEND=noninteractive
+       - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
+       - ln -fs /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+       - apt-get install -y tzdata
+       - dpkg-reconfigure --frontend noninteractive tzdata
        - sudo apt update -y && sudo apt install git aria2 rsync -y
        - git config --global user.name "Sushrut1101"
        - git config --global user.email "guptasushrut@gmail.com"
