@@ -10,14 +10,10 @@ env:
 
 task:
   name: envsetup
-  persistent_worker:
-    labels:
-      name: ubuntu
-    isolation:
-      container:
-        image: ubuntu:20.04
-        cpu: 4
-        memory: 8G
+  container:
+      image: ubuntu:20.04
+      cpu: 4
+      memory: 8G
     
     init_script:
         -env
@@ -35,14 +31,11 @@ task:
     name: "Syncing, Building and Uploading..."
     depends_on:
         - envsetup
-    persistent_worker:
-        labels:
-            name: ubuntu-1
-        isolation:
-            container:
-                image: ubuntu:20.04
-                cpu: 12
-                memory: 64G
+  
+    container:
+        image: ubuntu:20.04
+        cpu: 12
+        memory: 64G
         
         sync_script:
             - echo "============================"
