@@ -1,5 +1,5 @@
 env:
-    MANIFEST: https://gitlab.com/OrangeFox/Manifest.git
+    MANIFEST: https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
     DT_LINK: https://gitlab.com/OrangeFox/device/A6020.git
     DT_PATH: device/lenovo/A6020
     DEVICE: A6020
