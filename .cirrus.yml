@@ -1,3 +1,12 @@
+env:
+    MANIFEST:
+    DT_LINK:
+    DT_PATH:
+    DEVICE:
+    OEM:
+    TARGET:
+    EXTRA_CMD:
+
 task:
   name: envsetup
   persistent_worker:
@@ -8,7 +17,10 @@ task:
         image: ubuntu:20.04
         cpu: 4
         memory: 8G
-        
+    
+    init_script:
+        -env
+    
     env_script:
         - sudo apt update && sudo apt install git aria2 rsync -y
         - git config --global user.name "Sushrut1101"
