@@ -1,12 +1,12 @@
 env:
-    MANIFEST:
-    DT_LINK:
-    DT_PATH:
-    DEVICE:
-    OEM:
-    TARGET:
-    EXTRA_CMD:
-    OUTPUT: recovery.img
+    MANIFEST: https://gitlab.com/OrangeFox/Manifest.git
+    DT_LINK: https://gitlab.com/OrangeFox/device/A6020.git
+    DT_PATH: device/lenovo/A6020
+    DEVICE: A6020
+    OEM: lenovo
+    TARGET: recoveryimage
+    EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
+    OUTPUT: OrangeFox*.zip
 
 task:
   name: envsetup
