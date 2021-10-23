@@ -20,7 +20,6 @@ task:
        - apt install sudo
        - df -h
        - export DEBIAN_FRONTEND=noninteractive
-       - sudo export DEBIAN_FRONTEND=noninteractive
        - sudo apt update -y && sudo apt install git aria2 rsync -y
        - git config --global user.name "Sushrut1101"
        - git config --global user.email "guptasushrut@gmail.com"
