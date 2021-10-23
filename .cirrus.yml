@@ -14,7 +14,10 @@ task:
       image: ubuntu:20.04
       cpu: 4
       memory: 8G
-
+  
+  imp_script:
+       - DEBIAN_FRONTEND=noninteractive
+       
   env_script:
        - apt update
        - apt install sudo
