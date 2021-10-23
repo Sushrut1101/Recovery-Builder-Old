@@ -65,9 +65,8 @@ task:
       - echo "Uploading the Build..."
       - echo "============================"
       - cd ~/work
-      - cd out/target/product/$DEVICE
-      - export OUTPUT=$(ls OrangeFox*.zip)
-      - curl --upload-file $OUTPUT https://transfer.sh | tee link.txt && echo " "
+      - cd out/target/product/"$DEVICE"
+      - curl --upload-file OrangeFox-"$FOX_VERSION"-"$FOX_BUILD_TYPE"-"$DEVICE" https://transfer.sh | tee link.txt && echo " "
       - echo " "
       - echo "============================"
       - echo "Build Uploaded!"
