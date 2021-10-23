@@ -32,7 +32,7 @@ task:
         - cd ~
 
 task:
-    name: "Syncing, Building and Uploading"
+    name: "Syncing, Building and Uploading..."
     depends_on:
         - envsetup
       persistent_worker:
