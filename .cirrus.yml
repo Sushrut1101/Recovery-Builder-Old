@@ -54,4 +54,15 @@ task:
             echo "============================"
             echo "Syncing Complete!"
             echo "============================"
-            
+        
+        build_script:
+            echo "============================"
+            echo "Starting the Build..."
+            echo "============================"
+            cd ~/work
+            export ALLOW_MISSING_DEPENDENCIES=true
+            export LC_ALL="C"
+            . build/envsetup.sh
+            lunch omni_$DEVICE-eng
+            mka -j24 $TARGET
+        
