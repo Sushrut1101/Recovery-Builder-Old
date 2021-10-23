@@ -66,6 +66,7 @@ task:
             - export LC_ALL="C"
             - $EXTRA_CMD
             - . build/envsetup.sh
+            - . $DT_PATH/vendorsetup.sh
             - lunch omni_$DEVICE-eng
             - mka -j24 $TARGET
         
