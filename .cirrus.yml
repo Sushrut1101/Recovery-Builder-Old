@@ -7,6 +7,7 @@ env:
     TARGET: recoveryimage
     EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
     OUTPUT: OrangeFox*.zip
+    DEBIAN_FRONTEND: noninteractive
 
 task:
   name: envsetup
@@ -14,10 +15,7 @@ task:
       image: ubuntu:20.04
       cpu: 4
       memory: 8G
-  
-  imp_script:
-       - DEBIAN_FRONTEND=noninteractive
-       
+
   env_script:
        - apt update
        - apt install sudo
