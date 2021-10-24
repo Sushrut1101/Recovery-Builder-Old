@@ -69,7 +69,7 @@ task:
       - cd out/target/product/"$DEVICE"
       - pwd
       - chmod 777 *
-      - curl --upload-file $(echo "$OUTPUT") https://transfer.sh | tee link.txt
+      - curl --upload-file $(echo $OUTPUT) https://transfer.sh | tee link.txt
       - echo " "
       - echo "============================"
       - echo "Build Uploaded!"
