@@ -66,6 +66,7 @@ task:
       - echo "============================"
       - cd ~/work
       - cd out/target/product/"$DEVICE"
+      - ls -lh
       - pwd
       - chmod 777 *
       - export OUTPUT=OrangeFox*.zip
