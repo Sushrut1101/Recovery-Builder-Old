@@ -76,7 +76,7 @@ task:
       - echo "Build Uploaded!"
       - echo "Please see the link Below-  "
       - echo "----------------------------"
-      - cat link.txt
+      - cat link.txt && echo " "
       - echo "============================"
         
 
