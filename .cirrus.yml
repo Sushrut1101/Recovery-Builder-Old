@@ -59,6 +59,11 @@ task:
       - git clone https://gitlab.com/OrangeFox/bootable/Recovery.git -b fox_10.0 bootable/recovery
       - git clone https://gitlab.com/OrangeFox/vendor/recovery.git -b fox_10.0 vendor/recovery
   
+  Clone-QCOM-Stuff_script:
+      - cd ~/work
+      - git clone https://github.com/TeamWin/android_device_qcom_twrp-common.git -b android-10 device/qcom/common
+      - git clone https://github.com/TeamWin/android_device_qcom_common.git -b android-10 device/qcom/common
+  
   Build_script:
       - echo "============================"
       - echo "Starting the Build..."
