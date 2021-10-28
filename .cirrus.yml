@@ -1,5 +1,5 @@
 env:
-    MANIFEST: https://github.com/SmallPP420/finally-building-twrp-for-my-device-/blob/main/BoardConfig.mk -b fox_9.0
+    MANIFEST: https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
     DT_LINK: https://github.com/SmallPP420/finally-building-twrp-for-my-device-.git -b main
     DEVICE: WSP_sprout
     OEM: hmd
