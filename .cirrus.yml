@@ -42,7 +42,7 @@ task:
   
   Sync_script:
       - echo "============================"
-      - echo "Syncing The Sources..."
+      - echo "Syncing The Sources...."
       - echo "============================"
       - mkdir -p ~/work
       - cd ~/work
