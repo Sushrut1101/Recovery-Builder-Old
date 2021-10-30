@@ -1,12 +1,12 @@
 env:
-    MANIFEST: https://gitlab.com/OrangeFox/Manifest.git -b fox_9.0
-    DT_LINK: https://github.com/SmallPP420/finally-building-twrp-for-my-device-.git -b main
+    MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-9.0
+    DT_LINK: https://github.com/SmallPP420/uhhh.git -b main
     DEVICE: WSP_sprout
     OEM: hmd
     DT_PATH: device/$OEM/$DEVICE
     TARGET: bootimage
     EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
-    OUTPUT: OrangeFox*.zip 
+    OUTPUT: TWRP*.zip 
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
