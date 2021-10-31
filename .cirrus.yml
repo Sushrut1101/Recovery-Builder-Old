@@ -4,9 +4,9 @@ env:
     DEVICE: WSP_sprout
     OEM: hmd
     DT_PATH: device/$OEM/$DEVICE
-    TARGET: bootimage
+    TARGET: recoveryimage
     EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
-    OUTPUT: TWRP*.zip 
+    OUTPUT: Boot.img 
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
