@@ -6,7 +6,7 @@ env:
     DT_PATH: device/$OEM/$DEVICE
     TARGET: recoveryimage
     EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
-    OUTPUT: Boot.img 
+    OUTPUT: boot.img 
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
