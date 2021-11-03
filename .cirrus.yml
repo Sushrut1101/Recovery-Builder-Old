@@ -26,7 +26,6 @@ task:
        - export DEBIAN_FRONTEND=noninteractive
        - apt update
        - apt install sudo
-       - df -h
        - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
        - ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
        - apt-get install -y tzdata
