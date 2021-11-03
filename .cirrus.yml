@@ -14,7 +14,7 @@ env:
     LUNCH_COMBO: aosp_$DEVICE-userdebug
 
 task:
-  name: "Building..."
+  name: "Building ROM..."
   timeout_in: 240m  
   container:
       image: ubuntu:20.04
