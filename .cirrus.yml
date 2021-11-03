@@ -32,6 +32,7 @@ task:
        - dpkg-reconfigure --frontend noninteractive tzdata
        - sudo apt update -y && sudo apt install git aria2 curl wget rsync zip unzip lzma cpio ccache clang -y
        - sudo apt install python3 -y
+       - sudo ln -sf /usr/bin/python3 /usr/bin/python
        - git config --global user.name "Sushrut1101"
        - git config --global user.email "guptasushrut@gmail.com"
        - git clone https://github.com/akhilnarang/scripts.git ~/scripts
