@@ -11,7 +11,7 @@ env:
     KT_PATH: kernel/$OEM/$PLATFORM
     TARGET: bacon
     EXTRA_CMD: export SKIP_ABI_CHECKS=true
-    LUNCH_COMBO: aosp_"$DEVICE"-userdebug
+    LUNCH_COMBO: aosp_$DEVICE-userdebug
 
 task:
   name: "Building..."
@@ -69,15 +69,15 @@ task:
       - export CCACHE_EXEC=/usr/bin/ccache
       - ccache -M 50G
       - . build/envsetup.sh
-      - lunch "$LUNCH_COMBO"
-      - mka -j31 $TARGET
+      - lunch aosp_A6020-userdebug
+      - mka -j31 bacon
      
   Upload_script:
       - echo "============================"
       - echo "Uploading the Build..."
       - echo "============================"
       - cd ~/work
-      - cd out/target/product/"$DEVICE"
+      - cd out/target/product/$DEVICE
       - ls -lh
       - pwd
       - chmod 777 *
