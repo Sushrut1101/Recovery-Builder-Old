@@ -1,21 +1,20 @@
 env:
     MANIFEST: https://github.com/PixelExperience/manifest.git -b eleven-plus
-    DEVICE: miatoll
-    OEM: xiaomi
-    DT_LINK: https://github.com/PixelExperience-Devices/device_xiaomi_miatoll.git
+    DEVICE: A6020
+    OEM: lenovo
+    DT_LINK: https://github.com/ibratabian17/device_lenovo_A6020.git
     DT_PATH: device/$OEM/$DEVICE
-    VT_LINK: https://gitlab.pixelexperience.org/android/vendor-blobs/vendor_xiaomi_miatoll.git
+    VT_LINK: https://github.com/hsj51/vendor_lenovo_A6020.git
     VT_PATH: vendor/$OEM/$DEVICE
-    KT_LINK: https://github.com/ArrowOS-Devices/android_kernel_xiaomi_sm6250.git
-    PLATFORM: sm6250
+    KT_LINK: https://github.com/hsj51/kernel_lenovo_msm8916.git
+    PLATFORM: msm8916
     KT_PATH: kernel/$OEM/$PLATFORM
     TARGET: bacon
     EXTRA_CMD: export SKIP_ABI_CHECKS=true
     LUNCH_COMBO: aosp_"$DEVICE"-userdebug
-    OUTPUT: PixelExperience*.zip
 
 task:
-  name: "Setting Up, Syncing, Building and Uploading..."
+  name: "Building..."
   timeout_in: 240m  
   container:
       image: ubuntu:20.04
@@ -82,7 +81,7 @@ task:
       - ls -lh
       - pwd
       - chmod 777 *
-      - curl --upload-file $(echo $OUTPUT) https://transfer.sh | tee link.txt && echo " "
+      - curl --upload-file *.zip https://transfer.sh | tee link.txt && echo " "
       - echo " "
       - echo "============================"
       - echo "Build Uploaded!"
