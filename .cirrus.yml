@@ -59,7 +59,7 @@ task:
   fox-10-setup_script:
       - cd ~/work
       - cd build
-      - wget https://gitlab.com/OrangeFox/sync/-/raw/master/patch-manifest-fox_10.0.diff
+      - wget https://gitlab.com/OrangeFox/sync/-/raw/master/patches/patch-manifest-fox_10.0.diff
       - patch -p1 < patch-manifest-fox_10.0.diff
       - rm -rf patch-manifest-fox_10.0.diff
       - cd -
