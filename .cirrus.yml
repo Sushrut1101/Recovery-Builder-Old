@@ -1,7 +1,7 @@
 env:
-    MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-10.0-deprecated
-    DT_LINK: https://github.com/Redmi-MT6765/recovery_dandelion.git -b fox_10.0
-    DEVICE: dandelion
+    FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
+    DT_LINK: https://github.com/OrangeFoxRecovery/device_xiaomi_sweet.git -b fox_11.0
+    DEVICE: sweet
     OEM: xiaomi
     DT_PATH: device/$OEM/$DEVICE
     TARGET: recoveryimage
@@ -9,7 +9,7 @@ env:
     OUTPUT: OrangeFox*.zip 
 
 task:
-  name: "Setting Up, Syncing, Building and Uploading..."
+  name: "Recovery Build"
   timeout_in: 240m  
   container:
       image: ubuntu:20.04
@@ -49,31 +49,18 @@ task:
       - echo "============================"
       - mkdir -p ~/work
       - cd ~/work
-      - repo init --depth=1 -u $MANIFEST 
-      - repo sync -j16 --force-sync --no-tags --no-clone-bundle
+      - git clone $FOX_SYNC sync
+      - cd sync
+      - ./orangefox_sync.sh --branch 11.0 --path ~/work
       - git clone $DT_LINK $DT_PATH
       - echo "============================"
       - echo "Syncing Complete!"
       - echo "============================"
   
-  fox-10-setup_script:
-      - cd ~/work
-      - cd build
-      - wget https://gitlab.com/OrangeFox/sync/-/raw/master/patches/patch-manifest-fox_10.0.diff
-      - patch -p1 < patch-manifest-fox_10.0.diff
-      - rm -rf patch-manifest-fox_10.0.diff
-      - cd -
-      - rm -rf bootable/recovery vendor/recovery
-      - git clone https://gitlab.com/OrangeFox/bootable/Recovery.git -b fox_10.0 bootable/recovery
-      - git clone https://gitlab.com/OrangeFox/vendor/recovery.git -b fox_10.0 vendor/recovery
-  
   Clone-OrangeFox-Theme_script:
-      - git clone https://gitlab.com/OrangeFox/misc/Theme.git ~/work/bootable/recovery/gui/theme
-  
-  Clone-QCOM-Stuff_script:
       - cd ~/work
-      - git clone https://github.com/TeamWin/android_device_qcom_twrp-common.git -b android-10 device/qcom/twrp-common
-      - git clone https://github.com/TeamWin/android_device_qcom_common.git -b android-10 device/qcom/common
+      - rm -rf bootable/recovery/gui/theme
+      - git clone https://gitlab.com/OrangeFox/misc/Theme.git bootable/recovery/gui/theme
   
   Build_script:
       - echo "============================"
@@ -88,9 +75,8 @@ task:
       - export CCACHE_EXEC=/usr/bin/ccache
       - ccache -M 50G
       - . build/envsetup.sh
-      - . $DT_PATH/vendorsetup.sh
-      - lunch omni_$DEVICE-eng
-      - mka -j16 $TARGET
+      - lunch twrp_$DEVICE-eng
+      - mka $TARGET
      
   Upload_script:
       - echo "============================"
@@ -101,7 +87,7 @@ task:
       - ls -lh
       - pwd
       - chmod 777 *
-      - curl --upload-file $(echo $OUTPUT) https://transfer.sh | tee link.txt && echo " "
+      - curl -T $(echo $OUTPUT) https://oshi.at/$(echo $OUTPUT)/43200 | tee link.txt && echo " "
       - echo " "
       - echo "============================"
       - echo "Build Uploaded!"
@@ -109,5 +95,3 @@ task:
       - echo "----------------------------"
       - cat link.txt && echo " "
       - echo "============================"
-        
-
