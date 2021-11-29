@@ -52,6 +52,7 @@ task:
       - git clone $FOX_SYNC sync
       - cd sync
       - ./orangefox_sync.sh --branch 11.0 --path ~/work
+      - cd ~/work
       - git clone $DT_LINK $DT_PATH
       - echo "============================"
       - echo "Syncing Complete!"
