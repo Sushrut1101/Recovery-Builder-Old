@@ -9,7 +9,7 @@ env:
     OUTPUT: P*.zip 
 
 task:
-  name: "SettingUp, Syncing, Building and Uploading..."
+  name: "Setting Up, Syncing, Building and Uploading..."
   timeout_in: 240m  
   container:
       image: ubuntu:20.04
