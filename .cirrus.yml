@@ -50,7 +50,7 @@ task:
       - mkdir -p ~/work
       - cd ~/work
       - repo init --depth=1 -u $MANIFEST 
-      - repo sync -j16 --force-sync --no-tags --no-clone-bundle
+      - repo sync
       - git clone $DT_LINK $DT_PATH
       - echo "============================"
       - echo "Syncing Complete!"
