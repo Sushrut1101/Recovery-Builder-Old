@@ -1,12 +1,12 @@
 env:
-    MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-10.0-deprecated
-    DT_LINK: https://github.com/Redmi-MT6765/recovery_dandelion.git -b fox_10.0
-    DEVICE: dandelion
-    OEM: xiaomi
+    MANIFEST: git://github.com/PitchBlackRecoveryProject/manifest_pb -b android-11.0
+    DT_LINK: https://github.com/Atharv2951-Roms/device_samsung_j7velte
+    DEVICE: j7velte
+    OEM: samsung
     DT_PATH: device/$OEM/$DEVICE
     TARGET: recoveryimage
-    EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
-    OUTPUT: OrangeFox*.zip 
+    EXTRA_CMD: git clone https://github.com/Atharv2951-Roms/ofrp_avtar misc
+    OUTPUT: P*.zip 
 
 task:
   name: "Setting Up, Syncing, Building and Uploading..."
@@ -28,8 +28,8 @@ task:
        - sudo apt update -y && sudo apt install git aria2 curl wget rsync zip unzip lzma cpio ccache neofetch -y
        - sudo apt install python2 -y
        - sudo ln -sf /usr/bin/python2 /usr/bin/python
-       - git config --global user.name "Sushrut1101"
-       - git config --global user.email "guptasushrut@gmail.com"
+       - git config --global user.name "Atharv2951"
+       - git config --global user.email "atharv2951@gmail.com"
        - git clone https://github.com/akhilnarang/scripts.git ~/scripts
        - cd ~/scripts
        - sudo bash setup/android_build_env.sh
@@ -59,22 +59,7 @@ task:
   fox-10-setup_script:
       - cd ~/work
       - cd build
-      - wget https://gitlab.com/OrangeFox/sync/-/raw/master/patches/patch-manifest-fox_10.0.diff
-      - patch -p1 < patch-manifest-fox_10.0.diff
-      - rm -rf patch-manifest-fox_10.0.diff
-      - cd -
-      - rm -rf bootable/recovery vendor/recovery
-      - git clone https://gitlab.com/OrangeFox/bootable/Recovery.git -b fox_10.0 bootable/recovery
-      - git clone https://gitlab.com/OrangeFox/vendor/recovery.git -b fox_10.0 vendor/recovery
-  
-  Clone-OrangeFox-Theme_script:
-      - git clone https://gitlab.com/OrangeFox/misc/Theme.git ~/work/bootable/recovery/gui/theme
-  
-  Clone-QCOM-Stuff_script:
-      - cd ~/work
-      - git clone https://github.com/TeamWin/android_device_qcom_twrp-common.git -b android-10 device/qcom/twrp-common
-      - git clone https://github.com/TeamWin/android_device_qcom_common.git -b android-10 device/qcom/common
-  
+      
   Build_script:
       - echo "============================"
       - echo "Starting the Build..."
@@ -83,14 +68,13 @@ task:
       - export ALLOW_MISSING_DEPENDENCIES=true
       - export LC_ALL="C"
       - export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-      - $EXTRA_CMD
       - export USE_CCACHE=1
       - export CCACHE_EXEC=/usr/bin/ccache
       - ccache -M 50G
       - . build/envsetup.sh
       - . $DT_PATH/vendorsetup.sh
       - lunch omni_$DEVICE-eng
-      - mka -j16 $TARGET
+      - mka recoveryimage
      
   Upload_script:
       - echo "============================"
