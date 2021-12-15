@@ -88,7 +88,9 @@ task:
       - ls -lh
       - pwd
       - chmod 777 *
-      - curl -T $(echo $OUTPUT) https://oshi.at/$(echo $OUTPUT)/43200 | tee link.txt && echo " "
+      - FILENAME=$(echo $OUTPUT)
+      - TIMEOUT=43200
+      - curl -T $FILENAME https://oshi.at/${FILENAME}/${TIMEOUT} | tee link.txt && echo " "
       - echo " "
       - echo "============================"
       - echo "Build Uploaded!"
