@@ -8,7 +8,7 @@ git clone $FOX_SYNC
 cd sync
 
 # Sync the Sources
-./orangefox_sync.sh --branch $FOX_BRANCH --path $SYNC_PATH
+./orangefox_sync.sh --branch $SYNC_BRANCH --path $SYNC_PATH
 
 # Change to the Source Directory
 cd $SYNC_PATH

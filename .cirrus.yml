@@ -1,6 +1,7 @@
 env:
     FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
     FOX_BRANCH: fox_11.0
+    SYNC_BRANCH: 11.0
     SYNC_PATH: ~/work
     DT_LINK: https://github.com/OrangeFoxRecovery/device_xiaomi_sweet.git -b fox_11.0
     DEVICE: sweet
