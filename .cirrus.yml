@@ -25,24 +25,7 @@ task:
 
   Build_script:
       - bash build.sh
-      - echo "Build Complete!"
 
   Upload_script:
-      - echo "============================"
-      - echo "Uploading the Build..."
-      - echo "============================"
-      - cd ~/work
-      - cd out/target/product/"$DEVICE"
-      - ls -lh
-      - pwd
-      - chmod 777 *
-      - FILENAME=$(echo $OUTPUT)
-      - TIMEOUT=43200
-      - curl -T $FILENAME https://oshi.at/${FILENAME}/${TIMEOUT} | tee link.txt && echo " "
-      - echo " "
-      - echo "============================"
-      - echo "Build Uploaded!"
-      - echo "Please see the link Below-  "
-      - echo "----------------------------"
-      - cat link.txt && echo " "
-      - echo "============================"
+      - export TIMEOUT=43200 # Link timeout (in minutes)
+      - bash upload.sh
