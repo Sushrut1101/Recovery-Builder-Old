@@ -1,34 +1,18 @@
 #!/bin/bash
 
-# Change to the Home Directory
-cd ~
-
-# Clone the Sync Repo
-git clone $FOX_SYNC
-cd sync
-
-# Sync the Sources
-./orangefox_sync.sh --branch $SYNC_BRANCH --path "$SYNC_PATH"
-
-# Change to the Source Directory
+# Change to the Source Directry
 cd $SYNC_PATH
 
-# Empty the VTS Makefile
-rm -rf frameworks/base/core/xsd/vts/Android.mk && touch frameworks/base/core/xsd/vts/Android.mk
-
-# Clone the theme if not already present
-if [ ! -d bootable/recovery/gui/theme ]; then
-git clone https://gitlab.com/OrangeFox/misc/theme.git bootable/recovery/gui/theme
-fi
-
-# Clone Trees
-git clone $DT_LINK $DT_PATH
-
-# ccache
+# Set-up ccache
 if [ -z "$CCACHE_SIZE" ]; then
     ccache -M 10G
 else
     ccache -M ${CCACHE_SIZE}
+fi
+
+# Empty the VTS Makefile
+if [ -f frameworks/base/core/xsd/vts/Android.mk ]; then
+    rm -rf frameworks/base/core/xsd/vts/Android.mk && touch frameworks/base/core/xsd/vts/Android.mk
 fi
 
 # Run the Extra Command

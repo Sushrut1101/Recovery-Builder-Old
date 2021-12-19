@@ -28,3 +28,6 @@ curl -T $FILENAME https://oshi.at/${FILENAME}/${TIMEOUT} | tee link.txt > /dev/n
 echo "=============================================="
 echo "${ORANGE}$(cat link.txt)"
 echo "=============================================="
+
+# Exit
+exit 0
