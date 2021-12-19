@@ -17,7 +17,7 @@ env:
 
 task:
   name: "Recovery Build"
-  timeout_in: 240m  
+  timeout_in: 120m  
   container:
       image: registry.gitlab.com/sushrut1101/docker:latest
       cpu: 8
