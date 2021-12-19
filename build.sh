@@ -16,6 +16,11 @@ cd $SYNC_PATH
 # Empty the VTS Makefile
 rm -rf frameworks/base/core/xsd/vts/Android.mk && touch frameworks/base/core/xsd/vts/Android.mk
 
+# Clone the theme if not already present
+if [ ! -d bootable/recovery/gui/theme ]; then
+git clone https://gitlab.com/OrangeFox/misc/theme.git bootable/recovery/gui/theme
+fi
+
 # Clone Trees
 git clone $DT_LINK $DT_PATH
 
