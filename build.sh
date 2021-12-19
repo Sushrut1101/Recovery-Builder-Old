@@ -37,6 +37,11 @@ $EXTRA_CMD
 # Prepare the Build Environment
 source build/envsetup.sh
 
+# export some Basic Vars
+export ALLOW_MISSING_DEPENDENCIES=true
+export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
+export LC_ALL="C"
+
 # lunch the target
 if [ "$FOX_BRANCH" = "fox_11.0" ]; then
     lunch twrp_${DEVICE}-eng
