@@ -8,7 +8,7 @@ git clone $FOX_SYNC
 cd sync
 
 # Sync the Sources
-./orangefox_sync.sh --branch $SYNC_BRANCH --path $SYNC_PATH
+./orangefox_sync.sh --branch $SYNC_BRANCH --path "$SYNC_PATH"
 
 # Change to the Source Directory
 cd $SYNC_PATH
@@ -17,7 +17,7 @@ cd $SYNC_PATH
 git clone $DT_LINK $DT_PATH
 
 # ccache
-if [-z "$CCACHE_SIZE"]; then
+if [ -z "$CCACHE_SIZE" ]; then
     ccache -M 10G
 else
     ccache -M ${CCACHE_SIZE}
@@ -30,16 +30,16 @@ $EXTRA_CMD
 source build/envsetup.sh
 
 # lunch the target
-if ["$FOX_BRANCH" = "fox_11.0"]; then
+if [ "$FOX_BRANCH" = "fox_11.0" ]; then
     lunch twrp_${DEVICE}-eng
 else
     lunch omni_${DEVICE}-eng
 fi
 
 # Build the Code
-if [-z "$J_VAL"]; then
+if [ -z "$J_VAL" ]; then
     mka -j$(nproc --all) $TARGET
-elif ["$J_VAL"="0"]; then
+elif [ "$J_VAL"="0" ]; then
     mka $TARGET
 else
     mka -j${J_VAL} $TARGET
