@@ -13,6 +13,9 @@ cd sync
 # Change to the Source Directory
 cd $SYNC_PATH
 
+# Empty the VTS Makefile
+rm -rf frameworks/base/core/xsd/vts/Android.mk && touch frameworks/base/core/xsd/vts/Android.mk
+
 # Clone Trees
 git clone $DT_LINK $DT_PATH
 
