@@ -20,7 +20,8 @@ env:
 
 task:
   name: "Recovery Build"
-  timeout_in: 120m  
+  trigger_type: manual
+  timeout_in: 120m
   container:
       image: registry.gitlab.com/sushrut1101/docker:latest
       cpu: 8
