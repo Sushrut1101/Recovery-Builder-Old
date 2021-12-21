@@ -13,7 +13,10 @@ env:
     CCACHE_DIR: ~/work/.ccache
     EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
     J_VAL: 16
-    OUTPUT: OrangeFox*.zip 
+    OUTPUT: OrangeFox*.zip
+
+    # Cirrus Specific Vars (Do *NOT* Change)
+    CIRRUS_SHELL: bash
 
 task:
   name: "Recovery Build"
