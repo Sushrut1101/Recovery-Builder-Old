@@ -23,12 +23,15 @@ task:
       cpu: 8
       memory: 32G
 
+  Clone-Dependencies_script:
+      - git clone https://github.com/OrangeFoxRecovery/Recovery-Builder-Common.git common
+
   Sync_script:
-      - bash sync.sh
+      - bash common/sync.sh
 
   Build_script:
-      - bash build.sh
+      - bash common/build.sh
 
   Upload_script:
       - export TIMEOUT=43200 # Link timeout (in minutes)
-      - bash upload.sh
+      - bash common/upload.sh
