@@ -7,7 +7,7 @@ env:
     DEVICE: mojito
     OEM: xiaomi
     DT_PATH: device/$OEM/$DEVICE
-    TARGET: recoveryimage
+    TARGET: bootimage
     USE_CCACHE: 1
     CCACHE_SIZE: 50G
     CCACHE_DIR: ~/work/.ccache
