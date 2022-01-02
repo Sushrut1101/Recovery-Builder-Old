@@ -36,6 +36,9 @@ task:
 
   Sync_script:
       - bash common/sync.sh
+  
+  Clone-Device-Dependencies_script:
+      - git clone --depth=1 https://gitlab.com/OrangeFox/kernel/mojito.git --single-branch --branch eleven ${SYNC_PATH}/kernel/xiaomi/mojito
 
   Build_script:
       - bash common/build.sh
