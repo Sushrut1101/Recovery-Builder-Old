@@ -1,19 +1,27 @@
 env:
+    # OrangeFox Sync Repository
     FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
+
+    # Device
     FOX_BRANCH: fox_11.0
-    SYNC_BRANCH: 11.0
-    SYNC_PATH: $HOME/work # Full absolute path. Use "$HOME" instead of "~".
     DT_LINK: https://github.com/OrangeFoxRecovery/device_xiaomi_sweet.git -b fox_11.0
     DEVICE: sweet
     OEM: xiaomi
-    DT_PATH: device/$OEM/$DEVICE
     TARGET: recoveryimage
+
+    # Extra Command
+    EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
+
+    DT_PATH: device/$OEM/$DEVICE
     USE_CCACHE: 1
     CCACHE_SIZE: 50G
     CCACHE_DIR: $HOME/work/.ccache
-    EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
     J_VAL: 16
     OUTPUT: OrangeFox*.zip
+
+    # Not Recommended to Change
+    SYNC_BRANCH: echo ${FOX_BRANCH} | cut -d_ -f2
+    SYNC_PATH: $HOME/work # Full (absolute) path. Use "$HOME" instead of "~".
 
     # Cirrus Specific Vars (Do *NOT* Change)
     CIRRUS_SHELL: bash
@@ -31,15 +39,12 @@ task:
       cpu: 8
       memory: 32G
 
-  Clone-Dependencies_script:
-      - git clone https://github.com/OrangeFoxRecovery/Recovery-Builder-Common.git common
-
   Sync_script:
-      - bash common/sync.sh
+      - bash sync.sh
 
   Build_script:
-      - bash common/build.sh
+      - bash build.sh
 
   Upload_script:
       - export TIMEOUT=43200 # Link timeout (in minutes)
-      - bash common/upload.sh
+      - bash upload.sh
