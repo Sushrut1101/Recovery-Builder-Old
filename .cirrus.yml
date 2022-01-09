@@ -3,14 +3,14 @@ env:
     FOX_BRANCH: fox_11.0
     SYNC_BRANCH: 11.0
     SYNC_PATH: $HOME/work # Full absolute path. Use "$HOME" instead of "~".
-    DT_LINK: https://github.com/OrangeFoxRecovery/device_xiaomi_mojito.git -b fox_11.0
-    DEVICE: mojito
+    DT_LINK: https://github.com/OrangeFoxRecovery/device_xiaomi_sweet.git -b fox_11.0
+    DEVICE: sweet
     OEM: xiaomi
     DT_PATH: device/$OEM/$DEVICE
-    TARGET: bootimage
+    TARGET: recoveryimage
     USE_CCACHE: 1
     CCACHE_SIZE: 50G
-    CCACHE_DIR: ~/work/.ccache
+    CCACHE_DIR: $HOME/work/.ccache
     EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
     J_VAL: 16
     OUTPUT: OrangeFox*.zip
@@ -36,9 +36,6 @@ task:
 
   Sync_script:
       - bash common/sync.sh
-  
-  Clone-Device-Dependencies_script:
-      - git clone --depth=1 https://gitlab.com/OrangeFox/kernel/mojito.git --single-branch --branch eleven ${SYNC_PATH}/kernel/xiaomi/mojito
 
   Build_script:
       - bash common/build.sh
