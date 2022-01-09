@@ -61,16 +61,5 @@ else
     mka -j${J_VAL} $TARGET || { echo "ERROR: Failed to Build OrangeFox!" && exit 1; }
 fi
 
-telegram_message \
-"
-🦊 OrangeFox Recovery CI
-
-✅ Build Completed Successfully!
-
-📱 Device: \"${DEVICE}\"
-🌲 Device Tree: \"${DT_LINK}\"
-🖥 Build System: \"${FOX_BRANCH}\"
-"
-
 # Exit
 exit 0

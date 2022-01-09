@@ -36,5 +36,20 @@ echo "=============================================="
 cat link.txt || { echo "ERROR: Failed to Upload the Build!" && exit 1; }
 echo "=============================================="
 
+# Send the Message on Telegram
+telegram_message \
+"
+🦊 OrangeFox Recovery CI
+
+✅ Build Completed Successfully!
+
+📱 Device: \"${DEVICE}\"
+🌲 Device Tree: \"${DT_LINK}\"
+🖥 Build System: \"${FOX_BRANCH}\"
+⬇️ Download Link: \"$(cat link.txt)\"
+📅 Date: \"$(date +'%d %B %Y')\"
+⏱ Time: \"$(date +"%T")\"
+"
+
 # Exit
 exit 0
