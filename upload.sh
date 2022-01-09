@@ -31,9 +31,11 @@ fi
 
 curl -T $FILENAME https://oshi.at/${FILENAME}/${TIMEOUT} | tee link.txt > /dev/null || { echo "ERROR: Failed to Upload the Build!" && exit 1; }
 
+DL_LINK = $(cat link.txt | grep Download | cut -d\  -f1)
+
 # Show the Download Link
 echo "=============================================="
-cat link.txt || { echo "ERROR: Failed to Upload the Build!" && exit 1; }
+echo ${DL_LINK} || { echo "ERROR: Failed to Upload the Build!" && exit 1; }
 echo "=============================================="
 
 # Send the Message on Telegram
@@ -46,7 +48,7 @@ telegram_message \
 📱 Device: \"${DEVICE}\"
 🌲 Device Tree: \"${DT_LINK}\"
 🖥 Build System: \"${FOX_BRANCH}\"
-⬇️ Download Link: \"$(cat link.txt)\"
+⬇️ Download Link: \"${DL_LINK}\"
 📅 Date: \"$(date +'%d %B %Y')\"
 ⏱ Time: \"$(date +"%T")\"
 "
