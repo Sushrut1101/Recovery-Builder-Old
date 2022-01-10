@@ -3,7 +3,6 @@
 # A Function to Send Posts to Telegram
 telegram_message() {
 	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" -d chat_id="${TG_CHAT_ID}" \
-	-d "parse_mode=Markdown" \
 	-d text="$1"
 }
 
@@ -22,9 +21,6 @@ if [ -f frameworks/base/core/xsd/vts/Android.mk ]; then
     rm -rf frameworks/base/core/xsd/vts/Android.mk && touch frameworks/base/core/xsd/vts/Android.mk
 fi
 
-# Run the Extra Command
-$EXTRA_CMD
-
 # Send the Telegram Message
 telegram_message \
 "
@@ -32,13 +28,16 @@ telegram_message \
 
 ✔️ The Build has been Triggered!
 
-📱 Device: \"${DEVICE}\"
-🌲 Device Tree: \"${DT_LINK}\"
-🖥 Build System: \"${FOX_BRANCH}\"
+📱 Device: ${DEVICE}
+🌲 Device Tree: ${DT_LINK}
+🖥 Build System: ${FOX_BRANCH}
 "
 
 # Prepare the Build Environment
 source build/envsetup.sh
+
+# Run the Extra Command
+$EXTRA_CMD
 
 # export some Basic Vars
 export ALLOW_MISSING_DEPENDENCIES=true

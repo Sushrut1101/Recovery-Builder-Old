@@ -3,7 +3,6 @@
 # A Function to Send Posts to Telegram
 telegram_message() {
 	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" -d chat_id="${TG_CHAT_ID}" \
-	-d "parse_mode=Markdown" \
 	-d text="$1"
 }
 
@@ -31,7 +30,7 @@ fi
 
 curl -T $FILENAME https://oshi.at/${FILENAME}/${TIMEOUT} | tee link.txt > /dev/null || { echo "ERROR: Failed to Upload the Build!" && exit 1; }
 
-DL_LINK = $(cat link.txt | grep Download | cut -d\  -f1)
+DL_LINK=$(cat link.txt | grep Download | cut -d\  -f1)
 
 # Show the Download Link
 echo "=============================================="
@@ -45,12 +44,12 @@ telegram_message \
 
 ✅ Build Completed Successfully!
 
-📱 Device: \"${DEVICE}\"
-🌲 Device Tree: \"${DT_LINK}\"
-🖥 Build System: \"${FOX_BRANCH}\"
-⬇️ Download Link: \"${DL_LINK}\"
-📅 Date: \"$(date +'%d %B %Y')\"
-⏱ Time: \"$(date +"%T")\"
+📱 Device: ${DEVICE}
+🌲 Device Tree: ${DT_LINK}
+🖥 Build System: ${FOX_BRANCH}
+⬇️ Download Link: ${DL_LINK}
+📅 Date: $(date +'%d %B %Y')
+⏱ Time: $(date +"%T")
 "
 
 # Exit
