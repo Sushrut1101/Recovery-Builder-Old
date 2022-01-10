@@ -3,10 +3,10 @@ env:
     FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
 
     # Device
-    FOX_BRANCH: fox_11.0
-    DT_LINK: https://github.com/OrangeFoxRecovery/device_xiaomi_sweet.git -b fox_11.0
-    DEVICE: sweet
-    OEM: xiaomi
+    FOX_BRANCH: fox_10.0
+    DT_LINK: https://github.com/OrangeFoxRecovery/device_samsung_m20lte.git -b fox_10.0
+    DEVICE: m20lte
+    OEM: samsung
     TARGET: recoveryimage
 
     DT_PATH: device/$OEM/$DEVICE
