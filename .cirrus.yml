@@ -34,7 +34,7 @@ task:
   trigger_type: manual
   timeout_in: 120m
   container:
-      image: registry.gitlab.com/sushrut1101/docker:latest
+      image: ghcr.io/sushrut1101/docker:latest
       cpu: 8
       memory: 32G
 
