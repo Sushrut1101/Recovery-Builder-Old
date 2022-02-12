@@ -44,6 +44,11 @@ export ALLOW_MISSING_DEPENDENCIES=true
 export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
 export LC_ALL="C"
 
+# Default Build Type
+if [ -z "$FOX_BUILD_TYPE" ]; then
+    export FOX_BUILD_TYPE="Unofficial-CI"
+fi
+
 # lunch the target
 if [ "$FOX_BRANCH" = "fox_11.0" ]; then
     lunch twrp_${DEVICE}-eng || { echo "ERROR: Failed to lunch the target!" && exit 1; }
