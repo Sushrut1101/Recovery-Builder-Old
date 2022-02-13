@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Source Vars
+source vars.sh
+
 # Change to the Home Directory
 cd ~
 
