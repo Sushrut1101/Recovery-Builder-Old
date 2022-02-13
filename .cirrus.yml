@@ -18,10 +18,7 @@ task:
       memory: 32G
 
   Checks_script:
-      - if [ ! -z $(cat vars.sh | grep "TG") ]; then
-            echo "ERROR - You Cannot Set *TG* Vars in your vars.sh"
-            exit 1
-        fi
+      - curl -sL https://raw.githubusercontent.com/OrangeFoxRecovery/OrangeFox-CI/fox/checks.sh | bash
 
   Vars_script:
       - source vars.sh
