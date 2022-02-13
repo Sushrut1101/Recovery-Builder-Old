@@ -35,9 +35,10 @@ telegram_message \
 🌲 Device Tree: ${DT_LINK}
 🖥 Build System: ${FOX_BRANCH}
 "
+echo " "
 
 # Prepare the Build Environment
-source build/envsetup.sh
+source build/envsetup.sh || { echo "ERROR: Failed to source build/envsetup.sh" && exit 1; }
 
 # Run the Extra Command
 $EXTRA_CMD
