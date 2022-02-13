@@ -32,7 +32,7 @@ telegram_message \
 ✔️ The Build has been Triggered!
 
 📱 Device: ${DEVICE}
-🌲 Device Tree: ${DT_LINK}
+🌲 Logs: [https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}](https://cirrus-ci.com/build/${CIRRUS_BUILD_ID})
 🖥 Build System: ${FOX_BRANCH}
 "
 echo " "

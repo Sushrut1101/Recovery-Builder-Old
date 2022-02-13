@@ -6,6 +6,7 @@ source vars.sh
 # A Function to Send Posts to Telegram
 telegram_message() {
 	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" -d chat_id="${TG_CHAT_ID}" \
+	-d parse_mode="Markdown"
 	-d text="$1"
 }
 
@@ -55,12 +56,12 @@ telegram_message \
 ✅ Build Completed Successfully!
 
 📱 Device: ${DEVICE}
-🌲 Device Tree: ${DT_LINK}
 🖥 Build System: ${FOX_BRANCH}
-⬇️ Download Link: ${DL_LINK}
+⬇️ Download Link: [${DL_LINK}](Here)
 📅 Date: $(date +'%d %B %Y')
 ⏱ Time: $(date +"%T")
 "
+echo " "
 
 # Exit
 exit 0
