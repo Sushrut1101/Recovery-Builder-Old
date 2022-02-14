@@ -53,6 +53,12 @@ if [ -z "$FOX_BUILD_TYPE" ]; then
     export FOX_BUILD_TYPE="Unofficial-CI"
 fi
 
+# Legacy Build Systems
+if [ $(echo $SYNC_BRANCH | cut -d. -f1) -le 6 ]; then
+    export OF_DISABLE_KEYMASTER2=1 # Disable Keymaster2
+    export OF_LEGACY_SHAR512=1 # Fix Compilation on Legacy Build Systems
+fi
+
 # lunch the target
 if [ "$FOX_BRANCH" = "fox_11.0" ]; then
     lunch twrp_${DEVICE}-eng || { echo "ERROR: Failed to lunch the target!" && exit 1; }
