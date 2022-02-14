@@ -12,6 +12,11 @@ telegram_message() {
 # Change to the Source Directry
 cd $SYNC_PATH
 
+# Sync Branch (will be used to fix legacy build system errors)
+if [ -z "$SYNC_BRANCH" ]; then
+    export SYNC_BRANCH=$(echo ${FOX_BRANCH} | cut -d_ -f2)
+fi
+
 # Set-up ccache
 if [ -z "$CCACHE_SIZE" ]; then
     ccache -M 10G
