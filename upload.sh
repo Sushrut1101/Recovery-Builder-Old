@@ -53,18 +53,18 @@ DATE_L=$(date +%d\ %B\ %Y)
 DATE_S=$(date +"%T")
 
 # Send the Message on Telegram
-printf \
-'
+echo -e \
+"
 🦊 OrangeFox Recovery CI
 
 ✅ Build Completed Successfully!
 
-📱 Device: "'"${DEVICE}"'"
-🖥 Build System: "'"${FOX_BRANCH}"'"
-⬇️ Download Link: <a href="'"${DL_LINK}"'">Here</a>
-📅 Date: "'"$(date +%d\ %B\ %Y)"'"
-⏱ Time: "'"$(date +%T)"'"
-' > tg.html
+📱 Device: "${DEVICE}"
+🖥 Build System: "${FOX_BRANCH}"
+⬇️ Download Link: <a href=\"${DL_LINK}\">Here</a>
+📅 Date: "$(date +%d\ %B\ %Y)"
+⏱ Time: "$(date +%T)"
+" > tg.html
 
 TG_TEXT=$(< tg.html)
 

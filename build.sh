@@ -32,16 +32,17 @@ if [ -f frameworks/base/core/xsd/vts/Android.mk ]; then
 fi
 
 # Send the Telegram Message
-printf \
-'
+
+echo -e \
+"
 🦊 OrangeFox Recovery CI
 
-✔️ The Build has been Triggered!
+✅ Build Completed Successfully!
 
-📱 Device: "'"${DEVICE}"'"
-🌲 Logs: <a href="'"https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}"'">"'"https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}"'"</a>
-🖥 Build System: "'"${FOX_BRANCH}"'"
-' > tg.html
+📱 Device: "${DEVICE}"
+🖥 Build System: "${FOX_BRANCH}"
+🌲 Logs: <a href=\"https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}\">Here</a>
+" > tg.html
 
 TG_TEXT=$(< tg.html)
 
