@@ -2,7 +2,9 @@
 
 CONFIG="vars.sh"
 
-if [ ! -z $(cat $CONFIG 2>&1 | grep "TG") ]; then
+# Telegram
+tg_check=$(grep 'TG' $CONFIG | wc -l)
+if [[ $tg_check -gt 0 ]]; then
     echo "ERROR - You Cannot Set *TG* Vars in your $CONFIG"
     exit 1
 fi
