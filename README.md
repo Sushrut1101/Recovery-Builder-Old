@@ -16,5 +16,5 @@ A Free CI to Build OrangeFox Recovery
 3. Create a Pull Reuest.
 4. Go to [cirrus-ci.com](https://cirrus-ci.com) And see the Build Logs.
 
-## Credis
+## Credits
 - @Sushrut1101 - To Make this CI
