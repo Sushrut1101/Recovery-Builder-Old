@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Source Vars
-source vars.sh
+# Source Configs
+source config.sh
 
 # A Function to Send Posts to Telegram
 telegram_message() {

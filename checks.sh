@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONFIG="vars.sh"
+CONFIG="config.sh"
 
 # Telegram
 tg_check=$(grep 'TG' $CONFIG | wc -l)

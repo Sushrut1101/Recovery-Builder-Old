@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Source Vars
-source vars.sh
+source config.sh
 
 # Change to the Home Directory
 cd ~
