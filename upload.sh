@@ -7,7 +7,7 @@ source config.sh
 telegram_message() {
 	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
 	-d chat_id="${TG_CHAT_ID}" \
-	-d parse_mode="Markdown" \
+	-d parse_mode="HTML" \
 	-d text="$1"
 }
 
@@ -49,21 +49,24 @@ echo "Download Link: ${DL_LINK}" || { echo "ERROR: Failed to Upload the Build!";
 echo "Mirror: ${MIRROR_LINK}" || { echo "WARNING: Failed to Mirror the Build!"; }
 echo "=============================================="
 
+DATE_L=$(date +%d\ %B\ %Y)
+DATE_S=$(date +"%T")
+
 # Send the Message on Telegram
 printf \
-"
+'
 🦊 OrangeFox Recovery CI
 
 ✅ Build Completed Successfully!
 
-📱 Device: ${DEVICE}
-🖥 Build System: ${FOX_BRANCH}
-⬇️ Download Link: [${DL_LINK}](Here)
-📅 Date: $(date +'%d %B %Y')
-⏱ Time: $(date +"%T")
-" > tg.md
+📱 Device: "'"${DEVICE}"'"
+🖥 Build System: "'"${FOX_BRANCH}"'"
+⬇️ Download Link: <a href="'"${DL_LINK}"'">Here</a>
+📅 Date: "'"$(date +%d\ %B\ %Y)"'"
+⏱ Time: "'"$(date +%T)"'"
+' > tg.html
 
-TG_TEXT=$(< tg.md)
+TG_TEXT=$(< tg.html)
 
 telegram_message "$TG_TEXT"
 

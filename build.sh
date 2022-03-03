@@ -7,7 +7,7 @@ source config.sh
 telegram_message() {
 	curl -s -X POST "https://api.telegram.org/bot${TG_TOKEN}/sendMessage" \
 	-d chat_id="${TG_CHAT_ID}" \
-	-d parse_mode="Markdown" \
+	-d parse_mode="HTML" \
 	-d text="$1"
 }
 
@@ -33,17 +33,17 @@ fi
 
 # Send the Telegram Message
 printf \
-"
+'
 🦊 OrangeFox Recovery CI
 
 ✔️ The Build has been Triggered!
 
-📱 Device: ${DEVICE}
-🌲 Logs: [https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}](https://cirrus-ci.com/build/${CIRRUS_BUILD_ID})
-🖥 Build System: ${FOX_BRANCH}
-" > tg.md
+📱 Device: "'"${DEVICE}"'"
+🌲 Logs: <a href="'"https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}"'">"'"https://cirrus-ci.com/build/${CIRRUS_BUILD_ID}"'"</a>
+🖥 Build System: "'"${FOX_BRANCH}"'"
+' > tg.html
 
-TG_TEXT=$(< tg.md)
+TG_TEXT=$(< tg.html)
 
 telegram_message "${TG_TEXT}"
 echo " "
