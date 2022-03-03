@@ -45,7 +45,7 @@ printf \
 
 TG_TEXT=$(< tg.md)
 
-telegram_message $TG_TEXT
+telegram_message "${TG_TEXT}"
 echo " "
 
 # Prepare the Build Environment
