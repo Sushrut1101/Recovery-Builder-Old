@@ -64,6 +64,9 @@ if [ -z "$FOX_BUILD_TYPE" ]; then
     export FOX_BUILD_TYPE="Unofficial-CI"
 fi
 
+# Default Maintainer's Name
+[ -z "$OF_MAINTAINER" ] && export OF_MAINTAINER="Unknown"
+
 # Legacy Build Systems
 if [ $(echo $SYNC_BRANCH | cut -d. -f1) -le 6 ]; then
     export OF_DISABLE_KEYMASTER2=1 # Disable Keymaster2
