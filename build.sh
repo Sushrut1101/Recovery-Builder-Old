@@ -37,7 +37,7 @@ echo -e \
 "
 🦊 OrangeFox Recovery CI
 
-✅ Build Completed Successfully!
+✔️ The Build has been Triggered!
 
 📱 Device: "${DEVICE}"
 🖥 Build System: "${FOX_BRANCH}"
