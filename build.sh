@@ -50,7 +50,7 @@ telegram_message "${TG_TEXT}"
 echo " "
 
 # Prepare the Build Environment
-source build/envsetup.sh || { echo "ERROR: Failed to source build/envsetup.sh" && exit 1; }
+source build/envsetup.sh
 
 # Run the Extra Command
 $EXTRA_CMD
