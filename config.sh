@@ -6,6 +6,11 @@ export DT_LINK="https://gitlab.com/OrangeFox/device/beryllium.git -b fox_9.0"
 
 export DEVICE="beryllium"
 export OEM="xiaomi"
+
+# Build Target
+## "recoveryimage" - for A-Only Devices without using Vendor Boot
+## "bootimage" - for A/B devices without recovery partition (and without vendor boot)
+## "vendorbootimage" - for devices Using vendor boot for the recovery ramdisk (Usually for devices shipped with Android 12 or higher)
 export TARGET="recoveryimage"
 
 export OUTPUT="OrangeFox*.zip"

@@ -18,6 +18,15 @@ telegram_message() {
 git clone $FOX_SYNC
 cd sync
 
+# Setup Branch names
+if [ "$FOX_BRANCH" = "fox_12.0" ]; then
+	printf "Warning! Using fox_12.1 instead of fox_12.0.\n"
+	FOX_BRANCH="fox_12.1"
+elif [ "$FOX_BRANCH" = "fox_8.0" ]; then
+	printf "Warning! Using fox_8.1 instead of fox_8.0.\n"
+	FOX_BRANCH="fox_8.1"
+fi
+
 # Setup the Sync Branch
 if [ -z "$SYNC_BRANCH" ]; then
     export SYNC_BRANCH=$(echo ${FOX_BRANCH} | cut -d_ -f2)
