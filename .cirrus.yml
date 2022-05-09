@@ -3,7 +3,7 @@ env:
     FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
     
      # Device
-    FOX_BRANCH: fox_9.0-kernel-4.9
+    FOX_BRANCH: 9.0
     DT_LINK: https://github.com/NRanjan-17/recovery_xiaomi_mido.git
     DEVICE: mido
     OEM: xiaomi
