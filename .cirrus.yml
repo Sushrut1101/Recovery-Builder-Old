@@ -1,6 +1,13 @@
 env:
     # OrangeFox Sync Repository
     FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
+    
+     # Device
+    FOX_BRANCH: fox_9.0-kernel-4.9
+    DT_LINK: https://github.com/NRanjan-17/recovery_xiaomi_mido.git
+    DEVICE: mido
+    OEM: xiaomi
+    TARGET: recoveryimage
 
     # Config
     CONFIG: config.sh
@@ -24,7 +31,22 @@ task:
       - curl -sL https://raw.githubusercontent.com/OrangeFoxRecovery/OrangeFox-CI/fox/scripts/checks.sh | bash
 
   Sync_script:
+      Sync_script:
       - curl -sL https://raw.githubusercontent.com/OrangeFoxRecovery/OrangeFox-CI/fox/scripts/sync.sh | bash
+      - (bash -c "$command" | tee sync.txt) || true
+      - a=$(grep 'Cannot remove project' sync.txt || true)
+      - b=$(grep "^fatal: remove-project element specifies non-existent project" sync.txt || true)
+      - if [[ $a == *'Cannot remove project'* ]]
+      - then
+      - a=$(echo $a | cut -d ':' -f2)
+      - rm -rf $a
+      - repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all)
+      - elif [[ $b == *'remove-project element specifies non-existent'* ]]
+      - then exit 1
+      - else
+      - (repo forall -c 'git checkout .' && bash -c "$only_sync") || (find -name shallow.lock -delete && find -name index.lock -delete && bash -c "$only_sync")
+      - fi
+      - rm -rf sync.txt
 
   Build_script:
       - curl -sL https://raw.githubusercontent.com/OrangeFoxRecovery/OrangeFox-CI/fox/scripts/build.sh | bash
