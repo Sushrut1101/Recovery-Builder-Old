@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Device
-export FOX_BRANCH="fox_9.0-kernel-4.9"
-export DT_LINK="https://github.com/NRanjan-17/recovery_xiaomi_mido.git"
+export FOX_BRANCH="fox_9.0"
+export DT_LINK="https://github.com/NRanjan-17/recovery_xiaomi_mido.git -b fox_9.0-kernel-4.9"
 
 export DEVICE="mido"
 export OEM="xiaomi"
