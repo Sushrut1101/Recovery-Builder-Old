@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Device
-export FOX_BRANCH="fox_9.0"
-export DT_LINK="https://gitlab.com/OrangeFox/device/beryllium.git -b fox_9.0"
+export FOX_BRANCH="fox_9.0-kernel-4.9"
+export DT_LINK="https://github.com/NRanjan-17/recovery_xiaomi_mido.git"
 
-export DEVICE="beryllium"
+export DEVICE="mido"
 export OEM="xiaomi"
 
 # Build Target
