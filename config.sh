@@ -23,6 +23,10 @@ export OUTPUT="OrangeFox*.zip"
 # Extra Command
 export EXTRA_CMD="git clone https://github.com/OrangeFoxRecovery/Avatar.git misc"
 
+# Magisk
+## Use the Latest Release of Magisk for the OrangeFox addon
+OF_USE_LATEST_MAGISK=true
+
 # Not Recommended to Change
 export SYNC_PATH="$HOME/work" # Full (absolute) path.
 export USE_CCACHE=1
