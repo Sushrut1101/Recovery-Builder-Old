@@ -64,7 +64,8 @@ if [[ $OF_USE_LATEST_MAGISK = "true" || $OF_USE_LATEST_MAGISK = "1" ]]; then
 	aria2c $LATEST_MAGISK_URL 2>&1 || wget $LATEST_MAGISK_URL 2>&1
 	echo "Magisk Downloaded Successfully"
 	echo "Renaming .apk to .zip ..."
-	rename 's/.apk/.zip/' Magisk*
+	#rename 's/.apk/.zip/' Magisk*
+	mv $("ls" Magisk*.apk) $("ls" Magisk*.apk | sed 's/.apk/.zip/g')
 	cd $SYNC_PATH >/dev/null
 	echo "Done!"
 fi
