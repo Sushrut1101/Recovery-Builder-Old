@@ -2,7 +2,7 @@
 
 # Device
 export FOX_BRANCH="fox_11.0"
-export DT_LINK="https://github.com/brigudav/android_device_xiaomi_surya_twrp -b android-12.1"
+export DT_LINK="https://github.com/Jeick18/android_device_xiaomi_surya_twrp -b android-12.1"
 
 export DEVICE="surya"
 export OEM="xiaomi"
