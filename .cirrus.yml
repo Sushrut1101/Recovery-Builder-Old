@@ -1,113 +1,30 @@
 env:
-    MANIFEST: https://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-10.0-deprecated
-    DT_LINK: https://github.com/Redmi-MT6765/recovery_dandelion.git -b fox_10.0
-    DEVICE: dandelion
-    OEM: xiaomi
-    DT_PATH: device/$OEM/$DEVICE
-    TARGET: recoveryimage
-    EXTRA_CMD: git clone https://github.com/OrangeFoxRecovery/Avatar.git misc
-    OUTPUT: OrangeFox*.zip 
+    # OrangeFox Sync Repository
+    FOX_SYNC: https://gitlab.com/OrangeFox/sync.git
+
+    # Config
+    CONFIG: config.sh
+
+    # Cirrus Specific Vars (Do *NOT* Change)
+    CIRRUS_SHELL: bash
 
 task:
-  name: "Setting Up, Syncing, Building and Uploading..."
-  timeout_in: 240m  
+  name: "Recovery Build"
+  timeout_in: 120m
   container:
-      image: ubuntu:20.04
+      image: ghcr.io/sushrut1101/docker:arch
       cpu: 8
-      memory: 32G
-  
-  Build-Env-Setup_script:
-       - export DEBIAN_FRONTEND=noninteractive
-       - apt update
-       - apt install sudo
-       - df -h
-       - DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends tzdata
-       - ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
-       - apt-get install -y tzdata
-       - dpkg-reconfigure --frontend noninteractive tzdata
-       - sudo apt update -y && sudo apt install git aria2 curl wget rsync zip unzip lzma cpio ccache neofetch -y
-       - sudo apt install python2 -y
-       - sudo ln -sf /usr/bin/python2 /usr/bin/python
-       - git config --global user.name "Sushrut1101"
-       - git config --global user.email "guptasushrut@gmail.com"
-       - git clone https://github.com/akhilnarang/scripts.git ~/scripts
-       - cd ~/scripts
-       - sudo bash setup/android_build_env.sh
-       - cd ~
-  
-  Neofetch_script:
-       - neofetch
-  
-  Storage-Checker_script:
-      - df -h
-      - lsblk
-      - ls -l -a -h
-  
-  Sync_script:
-      - echo "============================"
-      - echo "Syncing The Sources..."
-      - echo "============================"
-      - mkdir -p ~/work
-      - cd ~/work
-      - repo init --depth=1 -u $MANIFEST 
-      - repo sync -j16 --force-sync --no-tags --no-clone-bundle
-      - git clone $DT_LINK $DT_PATH
-      - echo "============================"
-      - echo "Syncing Complete!"
-      - echo "============================"
-  
-  fox-10-setup_script:
-      - cd ~/work
-      - cd build
-      - wget https://gitlab.com/OrangeFox/sync/-/raw/master/patches/patch-manifest-fox_10.0.diff
-      - patch -p1 < patch-manifest-fox_10.0.diff
-      - rm -rf patch-manifest-fox_10.0.diff
-      - cd -
-      - rm -rf bootable/recovery vendor/recovery
-      - git clone https://gitlab.com/OrangeFox/bootable/Recovery.git -b fox_10.0 bootable/recovery
-      - git clone https://gitlab.com/OrangeFox/vendor/recovery.git -b fox_10.0 vendor/recovery
-  
-  Clone-OrangeFox-Theme_script:
-      - git clone https://gitlab.com/OrangeFox/misc/Theme.git ~/work/bootable/recovery/gui/theme
-  
-  Clone-QCOM-Stuff_script:
-      - cd ~/work
-      - git clone https://github.com/TeamWin/android_device_qcom_twrp-common.git -b android-10 device/qcom/twrp-common
-      - git clone https://github.com/TeamWin/android_device_qcom_common.git -b android-10 device/qcom/common
-  
-  Build_script:
-      - echo "============================"
-      - echo "Starting the Build..."
-      - echo "============================"
-      - cd ~/work
-      - export ALLOW_MISSING_DEPENDENCIES=true
-      - export LC_ALL="C"
-      - export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
-      - $EXTRA_CMD
-      - export USE_CCACHE=1
-      - export CCACHE_EXEC=/usr/bin/ccache
-      - ccache -M 50G
-      - . build/envsetup.sh
-      - . $DT_PATH/vendorsetup.sh
-      - lunch omni_$DEVICE-eng
-      - mka -j16 $TARGET
-     
-  Upload_script:
-      - echo "============================"
-      - echo "Uploading the Build..."
-      - echo "============================"
-      - cd ~/work
-      - cd out/target/product/"$DEVICE"
-      - ls -lh
-      - pwd
-      - chmod 777 *
-      - curl --upload-file $(echo $OUTPUT) https://transfer.sh | tee link.txt && echo " "
-      - echo " "
-      - echo "============================"
-      - echo "Build Uploaded!"
-      - echo "Please see the link Below-  "
-      - echo "----------------------------"
-      - cat link.txt && echo " "
-      - echo "============================"
-        
+      memory: 20G
 
+  Checks_script:
+      - curl -sL https://raw.githubusercontent.com/OrangeFoxRecovery/OrangeFox-CI/fox/scripts/checks.sh | bash
+
+  Sync_script:
+      - curl -sL https://raw.githubusercontent.com/OrangeFoxRecovery/OrangeFox-CI/fox/scripts/sync.sh | bash
+
+  Build_script:
+      - curl -sL https://raw.githubusercontent.com/OrangeFoxRecovery/OrangeFox-CI/fox/scripts/build.sh | bash
+
+  Upload_script:
+      - export TIMEOUT=43200 # Link timeout (in minutes)
+      - curl https://raw.githubusercontent.com/OrangeFoxRecovery/OrangeFox-CI/fox/scripts/upload.sh | bash
